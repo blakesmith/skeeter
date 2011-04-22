@@ -17,7 +17,7 @@ puts "Press enter when the workers are ready..."
 gets
 
 while true
-  json = {:message => 'convert', :url => images[rand(images.size)], :width => 70}.to_json
+  json = {:message => 'convert', :url => images[rand(images.size)], :width => 60}.to_json
   puts "Sending #{json}"
 
   dispatcher.send_string(json)

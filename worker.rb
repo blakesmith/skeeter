@@ -9,7 +9,7 @@ receiver = ZMQ::Socket.new context.pointer, ZMQ::PULL
 receiver.connect("ipc://ascii-dispatcher")
 
 def fetch_image(url, width)
-  response = `jp2a --width=80 "#{url}"`
+  response = `jp2a --width=#{width} "#{url}"`
 end
 
 while true
