@@ -1,27 +1,19 @@
 require 'rubygems'
 require 'ffi-rzmq'
-require 'json'
 
 context = ZMQ::Context.new
 
-dispatcher = ZMQ::Socket.new context.pointer, ZMQ::PUSH
-dispatcher.bind("ipc://ascii-dispatcher")
+front_addr = "ipc://dispatch-front.ipc"
+back_addr = "ipc://dispatch-back.ipc"
 
-images = [
-  "http://localhost:4567/images/briones_yeah.jpg",
-  "http://localhost:4567/images/programming-motherfuckers.jpg",
-  "http://localhost:4567/images/InBed.jpg"
-]
+frontend = context.socket(ZMQ::XREP)
+frontend.bind(front_addr)
 
-puts "Press enter when the workers are ready..."
-gets
+backend = context.socket(ZMQ::XREQ)
+backend.bind(back_addr)
 
-while true
-  json = {:message => 'convert', :url => images[rand(images.size)], :width => 60}.to_json
-  puts "Sending #{json}"
+queue = ZMQ::Device.new(ZMQ::QUEUE, frontend, backend)
 
-  dispatcher.send_string(json)
-  sleep(rand(0.7))
-end
-
-dispatcher.close
+frontend.close
+backend.close
+context.terminate
