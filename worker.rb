@@ -2,7 +2,6 @@ require 'rubygems'
 require 'ffi-rzmq'
 require 'open-uri'
 require 'json'
-require 'json_message'
 
 context = ZMQ::Context.new(1)
 
