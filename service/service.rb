@@ -14,10 +14,13 @@ class Handler
 end
 
 class Service < Goliath::API
+  use Goliath::Rack::Params
+  use Goliath::Rack::Validation::RequiredParam, {:key => 'image_url'}
+
   def response(env)
     req_socket.handler = Handler.new
 
-    json = {:message => 'convert', :url => "http://localhost:4567/images/briones_yeah.jpg", :width => 60}.to_json
+    json = {:message => 'convert', :url => params['image_url']}.to_json
     queued = req_socket.send_msg(json)
     puts "Sending #{json}" if queued
     req_socket.register_readable
