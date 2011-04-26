@@ -9,7 +9,7 @@ class Handler
   end
 
   def on_readable(socket, messages)
-    @f.resume(socket, messages)
+    @f.resume(messages)
   end
 end
 
@@ -18,16 +18,17 @@ class Service < Goliath::API
   use Goliath::Rack::Validation::RequiredParam, {:key => 'image_url'}
 
   def response(env)
-    req_socket.handler = Handler.new
-
     json = {:message => 'convert', :url => params['image_url']}.to_json
-    queued = req_socket.send_msg(json)
-    puts "Sending #{json}" if queued
-    req_socket.register_readable
-    socket, messages = Fiber.yield
-    resp = messages.first.copy_out_string
-
-    [200, {}, resp]
+    connection_pool.execute(false) do |socket|
+      socket.setsockopt(ZMQ::IDENTITY, "web-req#{Fiber.current.object_id}")
+      socket.handler = Handler.new
+      queued = socket.send_msg(json)
+      puts "Sending #{json}" if queued
+      socket.register_readable
+      messages = Fiber.yield
+      resp = messages.first.copy_out_string
+      [200, {}, resp]
+    end
   end
 end
 
