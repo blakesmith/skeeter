@@ -14,7 +14,6 @@ end
 
 while true
   str = receiver.recv_string
-  puts str
 
   message = JSON.parse(str)
   puts "Got message #{message.inspect}"
