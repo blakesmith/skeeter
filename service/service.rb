@@ -18,7 +18,7 @@ class Service < Goliath::API
   use Goliath::Rack::Validation::RequiredParam, {:key => 'image_url'}
 
   def response(env)
-    json = {:message => 'convert', :url => params['image_url']}.to_json
+    json = {:message => 'convert', :width => params['width'], :url => params['image_url']}.to_json
     connection_pool.execute(false) do |socket|
       socket.setsockopt(ZMQ::IDENTITY, "web-req#{Fiber.current.object_id}")
       socket.handler = Handler.new
