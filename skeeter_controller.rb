@@ -1,6 +1,6 @@
 def start
   puts "Starting Skeeter..."
-  `ruby service/skeeter.rb -d -e prod -v -P tmp/pids/skeeter.pid`
+  `ruby service/skeeter.rb -d -e prod -v -P ../tmp/pids/skeeter.pid`
 end
 
 def stop
