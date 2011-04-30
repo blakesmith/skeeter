@@ -3,12 +3,17 @@ require 'ffi-rzmq'
 require 'open-uri'
 require 'json'
 
-WORKER_COUNT = ARGV[0].to_i || 10
+WORKER_COUNT = ARGV.size > 0 ? ARGV[0].to_i : 2
 
 pids = []
 
 def fetch_image(url, width)
   response = `jp2a --width=#{width} "#{url}"`
+end
+
+def die(pids)
+  puts "Killing all workers..."
+  pids.map {|p| Process.kill("INT", p) }
 end
 
 WORKER_COUNT.times do |i|
@@ -36,9 +41,7 @@ WORKER_COUNT.times do |i|
   end
 end
 
-trap("INT") do
-  puts "Killing all workers..."
-  pids.map {|p| Process.kill("INT", p) }
-end
+trap("INT") { die(pids) }
+trap("TERM") { die(pids) }
 
 Process.wait

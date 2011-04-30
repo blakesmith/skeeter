@@ -7,4 +7,4 @@ gem 'em-synchrony', '0.3.0.beta.1'
 gem 'em-zeromq', '0.2.1'
 gem 'goliath', '0.9.1'
 gem 'sinatra', '1.2.3'
-
+gem 'daemons'
