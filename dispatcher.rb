@@ -3,8 +3,8 @@ require 'ffi-rzmq'
 
 context = ZMQ::Context.new
 
-front_addr = "tcp://0.0.0.0:5555"
-back_addr = "ipc://dispatch-back.ipc"
+front_addr = "ipc:///tmp/dispatch-front.ipc"
+back_addr = "ipc:///tmp/dispatch-back.ipc"
 
 frontend = context.socket(ZMQ::XREP)
 frontend.bind(front_addr)
