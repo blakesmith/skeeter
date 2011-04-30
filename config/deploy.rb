@@ -68,9 +68,9 @@ namespace :deploy do
   end
 
   task :stop do 
-    stop_server
-    stop_workers
     stop_dispatcher
+    stop_workers
+    stop_server
   end
 
   task :restart do
