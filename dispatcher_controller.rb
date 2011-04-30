@@ -2,4 +2,4 @@
 
 require 'daemons'
 
-Daemons.run('worker.rb')
+Daemons.run('dispatcher.rb')
