@@ -23,7 +23,7 @@ WORKER_COUNT.times do |i|
     context = ZMQ::Context.new(1)
 
     receiver = context.socket(ZMQ::REP)
-    receiver.connect("ipc://dispatch-back.ipc")
+    receiver.connect("ipc:///tmp/dispatch-back.ipc")
 
     loop do
       str = receiver.recv_string
