@@ -23,7 +23,7 @@ class EM::Protocols::ZMQConnectionHandler
   end
 end
 
-class Service < Goliath::API
+class Skeeter < Goliath::API
   use Goliath::Rack::Params
   use Goliath::Rack::Validation::RequiredParam, {:key => 'image_url'}
 
