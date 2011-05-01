@@ -8,7 +8,7 @@ WORKER_COUNT = ARGV.size > 0 ? ARGV[0].to_i : 2
 pids = []
 
 def fetch_image(url, width)
-  response = `jp2a --width=#{width} "#{url}"`
+  response = `curl -s "#{url}" | convert - jpg:- | jp2a - --width=#{width}`
 end
 
 def die(pids)
