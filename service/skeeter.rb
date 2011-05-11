@@ -25,6 +25,7 @@ end
 
 class Skeeter < Goliath::API
   use Goliath::Rack::Params
+  use Goliath::Rack::ValidationError
   use Goliath::Rack::Validation::RequiredParam, {:key => 'image_url'}
 
   def response(env)
