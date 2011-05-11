@@ -3,6 +3,16 @@
 ## What is it?
 
 Skeeter is a small asynchronous web service that takes in image urls and returns ascii art.
+Convert this:
+
+![Original
+image](https://github.com/blakesmith/skeeter/raw/master/images/moose.png)
+
+Into this:
+
+![Converted
+image](https://github.com/blakesmith/skeeter/raw/master/images/moose-ascii.jpg)
+
 You make a request to it like so:
 
   http://skeeter.blakesmith.me/?image_url=http://www.softicons.com/download/animal-icons/animal-icons-by-martin-berube/png/128/moose.png&width=100
