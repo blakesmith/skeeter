@@ -8,7 +8,6 @@ client = context.socket(ZMQ::REQ)
 client.connect("tcp://127.0.0.1:5555")
 
 images = [
-  "http://localhost:4567/images/briones_yeah.jpg",
   "http://localhost:4567/images/InBed.jpg",
   "http://localhost:4567/images/programming-motherfuckers.jpg"
 ]

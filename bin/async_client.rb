@@ -14,7 +14,6 @@ class Handler
 end
 
 images = [
-  "http://localhost:4567/images/briones_yeah.jpg",
   "http://localhost:4567/images/InBed.jpg",
   "http://localhost:4567/images/programming-motherfuckers.jpg"
 ]
