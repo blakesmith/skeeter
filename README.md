@@ -89,7 +89,7 @@ automatically install all the necessary ruby dependencies.
 ### Running
 
 Each ruby process has its own controller script (in the controllers/ direction)
-that will launch it as a daemon.
+that will launch it as a daemon. You must use Ruby 1.9 (for fiber support).
 
 - skeeter_controller.rb - Start the Goliath web server on port 9000. (ruby
   controllers/skeeter_controller.rb start)
