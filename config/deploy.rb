@@ -38,27 +38,27 @@ end
 
 namespace :deploy do
   task :start_dispatcher do
-    run "cd #{deploy_to}/current/bin && ruby dispatcher_controller.rb start"
+    run "cd #{deploy_to}/current/controllers && ruby dispatcher_controller.rb start"
   end
 
   task :start_workers do
-    run "cd #{deploy_to}/current/bin; rvm use 1.9.2;  ruby worker_controller.rb start"
+    run "cd #{deploy_to}/current/controllers &&  ruby worker_controller.rb start"
   end
 
   task :start_server do
-    run "cd #{deploy_to}/current/bin && ruby skeeter_controller.rb start"
+    run "cd #{deploy_to}/current/controllers && ruby skeeter_controller.rb start"
   end
 
   task :stop_dispatcher do
-    run "cd #{deploy_to}/current/bin && ruby dispatcher_controller.rb stop"
+    run "cd #{deploy_to}/current/controllers && ruby dispatcher_controller.rb stop"
   end
 
   task :stop_workers do
-    run "cd #{deploy_to}/current/bin && ruby worker_controller.rb stop"
+    run "cd #{deploy_to}/current/controllers && ruby worker_controller.rb stop"
   end
 
   task :stop_server do
-    run "cd #{deploy_to}/current/bin && ruby skeeter_controller.rb stop"
+    run "cd #{deploy_to}/current/controllers && ruby skeeter_controller.rb stop"
   end
 
   task :start do
