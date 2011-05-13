@@ -1,3 +1,6 @@
+require 'bundler'
+Bundler.setup
+
 require 'goliath'
 require 'json'
 
@@ -25,8 +28,7 @@ end
 
 class Skeeter < Goliath::API
   use Goliath::Rack::Params
-  use Goliath::Rack::ValidationError
-  use Goliath::Rack::Validation::RequiredParam, {:key => 'image_url'}
+  use Goliath::Rack::Validation::RequiredParam, {:key => 'image_url', :message => 'query param is required'}
 
   def response(env)
     json = {:message => 'convert', :width => params['width'], :url => params['image_url']}.to_json
