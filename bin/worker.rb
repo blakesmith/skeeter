@@ -32,7 +32,7 @@ WORKER_COUNT.times do |i|
       puts "Worker #{i}: Got message #{message.inspect}"
 
       # Do some work
-      if message['message'] = "convert"
+      if message['message'] == "convert"
         width = message['width'] || 80
         image = fetch_image(message['url'], width)
         receiver.send_string(image)
