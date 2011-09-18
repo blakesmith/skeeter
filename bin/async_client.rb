@@ -20,7 +20,7 @@ images = [
 
 EM.run do
   context = EM::ZeroMQ::Context.new(1)
-  req_socket = context.connect(ZMQ::REQ, "tcp://127.0.0.1:5555", Handler.new)
+  req_socket = context.connect(ZMQ::REQ, "ipc:///tmp/dispatch-front.ipc", Handler.new)
 
 
   EM::PeriodicTimer.new(3.3) do

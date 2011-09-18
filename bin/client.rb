@@ -5,7 +5,7 @@ require 'json'
 context = ZMQ::Context.new
 
 client = context.socket(ZMQ::REQ)
-client.connect("tcp://127.0.0.1:5555")
+client.connect("ipc:///tmp/dispatch-front.ipc")
 
 images = [
   "http://localhost:4567/images/InBed.jpg",
